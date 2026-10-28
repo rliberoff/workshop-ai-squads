@@ -1,0 +1,22 @@
+name: workshop-ai-squads
+version: 1.0.0
+description: Hands-on workshop on AI agentic development using Squads
+author: Rodrigo E. Liberoff V.
+targets:
+  - copilot
+  - vscode
+devDependencies:
+  apm:
+    - github/awesome-copilot/skills/git-commit#e24be77e6f203409cf99ab7d5a67e1540cb386d3
+    - github/awesome-copilot/agents/Thinking-Beast-Mode.agent.md#9505d750de4c039ef7a9166f440a8e3ef12e2efa
+  mcp:
+    - name: microsoft-learn
+      registry: false
+      transport: http
+      url: https://learn.microsoft.com/api/mcp
+includes: auto
+scripts: []
+dependencies:
+  mcp:
+    - name: io.github.github/github-mcp-server
+      transport: http
