@@ -2,7 +2,7 @@
 
 ## Objetivo
 
-En 90 minutos configurarás un equipo de Squad, delegarás una aplicación pequeña y comprobarás sus resultados. El objetivo es aprender a dirigir agentes, no dominar Python o C# ni crear un sistema de producción.
+En 105 minutos configurarás un equipo de Squad, delegarás una aplicación pequeña y comprobarás sus resultados, incluida la selección de modelos por agente en Copilot CLI. El objetivo es aprender a dirigir agentes, no dominar Python o C# ni crear un sistema de producción.
 
 La instalación y las descargas se completan antes del taller mediante la [preparación](01%20-%20preparacion.md). Si llegas sin el entorno listo, utiliza la modalidad por parejas u observación para no consumir la práctica instalando herramientas.
 
@@ -10,11 +10,11 @@ La instalación y las descargas se completan antes del taller mediante la [prepa
 
 1. Antes de la sesión: sigue la preparación y la sección [Antes de la sesión: preparar el proyecto](04%20-%20ejercicios.md#antes-de-la-sesión-preparar-el-proyecto) de la guía integrada para comprobar el runtime, crear el repositorio e inicializar Squad. Revisa la lista de preparación y detente: todavía no configures el equipo ni construyas la aplicación.
 2. Durante la sesión: sigue los [ejercicios](04%20-%20ejercicios.md) en orden. En el ejercicio 1 formas el equipo; en el 2 eliges el contexto técnico de Python o .NET y acuerdas el contrato; en el 3 autorizas la implementación y ejecutas la alternativa de tu proyecto.
-3. Después de la primera ejecución: continúa con revisión, recuperación de memoria y cierre en los ejercicios 4 y 5 y la sección final. Ejecutar una vez no sustituye estas comprobaciones.
+3. Después de la primera ejecución: continúa con revisión y recuperación de memoria en los ejercicios 4 y 5; después contrasta los modelos por agente en el [ejercicio 6](04%20-%20ejercicios.md#ejercicio-6-agentes-con-distintos-modelos-en-copilot-cli) y termina con el cierre. Ejecutar una vez no sustituye estas comprobaciones.
 
 Python y .NET son alternativas dentro de los mismos pasos, no guías independientes. Las acciones comunes de Squad se realizan una sola vez. Mantén la raíz del proyecto elegido al cambiar de interfaz.
 
-## Agenda de 90 minutos
+## Agenda de 105 minutos
 
 | Minutos | Duración | Actividad | Evidencia |
 | :--- | ---: | :--- | :--- |
@@ -25,7 +25,8 @@ Python y .NET son alternativas dentro de los mismos pasos, no guías independien
 | 40-60 | 20 | Ejercicio 3: delegar la implementación | Aplicación y pruebas ejecutables |
 | 60-72 | 12 | Ejercicio 4: revisar y corregir | Casos negativos y revisión humana |
 | 72-82 | 10 | Ejercicio 5: recuperar memoria en otra interfaz | Decisión recuperada desde archivos |
-| 82-90 | 8 | Cierre, evidencias y preguntas | Lista de salida y reflexión |
+| 82-97 | 15 | Ejercicio 6: agentes con distintos modelos en CLI | Configuración, solicitud y reporte del runtime contrastados |
+| 97-105 | 8 | Cierre, evidencias y preguntas | Lista de salida y reflexión |
 
 ## Ideas que explicaremos
 
@@ -36,6 +37,7 @@ Python y .NET son alternativas dentro de los mismos pasos, no guías independien
 - Memoria: archivos que futuras ejecuciones leen; no entrenamiento del modelo
 - Directiva: una regla expresada en lenguaje natural, no una garantía de seguridad
 - Verificación: ejecutar comprobaciones y revisar resultados, no aceptar una afirmación del agente
+- Modelo por agente: una preferencia persistente que debe contrastarse con el lanzamiento y el reporte del runtime; su aplicación depende de la interfaz
 
 ## Dos tecnologías, un contrato
 
@@ -79,6 +81,7 @@ Son nueve especialistas, además del coordinador y los miembros operativos que c
 - [ ] Compruebo al menos un error y la persistencia tras reiniciar
 - [ ] Ejecuto las pruebas, o registro quién las ejecutó y qué resultado obtuvo
 - [ ] Recupero una decisión en una sesión nueva sin volver a explicarla
+- [ ] Distingo modelo configurado, solicitado y reportado; identifico las limitaciones de mi interfaz y restauro las preferencias anteriores
 - [ ] Identifico una decisión que debe seguir tomando la persona
 
 La finalización en modalidad de observación se registra como tal. No equivale a haber ejecutado todos los agentes en la cuenta propia.

@@ -2,7 +2,7 @@
 
 ## Cómo seguir la práctica
 
-Esta es la guía completa de la práctica. Primero completa las instalaciones y la autenticación de la [preparación](01%20-%20preparacion.md); después realiza la sección «Antes de la sesión» de esta página. Durante el taller, sigue los ejercicios 1 a 5 en orden y termina con el cierre. Trabaja en el repositorio nuevo de práctica, no en el clon del material del taller. Todos los tiempos corresponden al [temario](00%20-%20temario.md).
+Esta es la guía completa de la práctica. Primero completa las instalaciones y la autenticación de la [preparación](01%20-%20preparacion.md); después realiza la sección «Antes de la sesión» de esta página. Durante el taller, sigue los ejercicios 1 a 6 en orden y termina con el cierre. Trabaja en el repositorio nuevo de práctica, no en el clon del material del taller. Todos los tiempos corresponden al [temario](00%20-%20temario.md).
 
 | Momento | Qué haces tú | Qué hace Squad | Antes de avanzar |
 | :--- | :--- | :--- | :--- |
@@ -12,6 +12,7 @@ Esta es la guía completa de la práctica. Primero completa las instalaciones y 
 | Ejercicio 3 | Autorizas la implementación y ejecutas los comandos de Python o .NET | Delega código, pruebas y documentación | Aplicación ejecutada y número de pruebas registrado |
 | Ejercicio 4 | Contrastas los casos de aceptación y apruebas reparaciones concretas | Revisa y corrige solo lo autorizado | Caso reparado y suite repetidos, o revisión sin hallazgos |
 | Ejercicio 5 | Cierras la conversación y abres otra interfaz | Recupera decisiones desde los archivos | Compruebas una decisión persistente |
+| Ejercicio 6 | Configuras dos modelos distintos en CLI y contrastas las evidencias | Lanza los especialistas del plan aprobado, si la interfaz lo permite | Distingues modelos guardados, solicitados y reportados, y restauras preferencias |
 | Cierre | Revisas cambios y anotas evidencias | No publica ni hace commit | Puedes explicar qué hicieron los agentes y qué revisaste tú |
 
 En cada paso con alternativas, ejecuta solo el bloque de Python o de .NET que corresponda al proyecto con el que trabajas y a tu *entorno de shell*. Las acciones comunes, como configurar Squad, aparecen una sola vez. Si decides practicar ambos lenguajes, utiliza sus repositorios separados: no ejecutes comandos de .NET dentro de la práctica Python ni al contrario.
@@ -22,7 +23,7 @@ Dirige tus peticiones a Squad con objetivos, entregables y límites, sin indicar
 
 ## Antes de la sesión: preparar el proyecto
 
-Estos tres pasos se hacen fuera de los 90 minutos, después de instalar las herramientas comunes y autenticarte. Hazlos tú en la terminal; todavía no abras una conversación con Squad ni encargues la aplicación a los agentes.
+Estos tres pasos se hacen fuera de los 105 minutos, después de instalar las herramientas comunes y autenticarte. Hazlos tú en la terminal; todavía no abras una conversación con Squad ni encargues la aplicación a los agentes.
 
 ### Paso 1: verificar el lenguaje elegido
 
@@ -54,7 +55,7 @@ Antes de avanzar: debe aparecer Python 3.12. Si el comando falta o muestra otra 
 
 Instala el SDK de .NET 10, no únicamente el runtime, desde la [descarga oficial](https://dotnet.microsoft.com/download/dotnet/10.0). .NET 10 es LTS. El material del repositorio fija el SDK 10.0.402 como referencia; la práctica se crea fuera del clon y puede utilizar un SDK 10.0 actualizado, dejando registrada su versión.
 
-Utilizaremos una aplicación de consola, `System.Text.Json` y pruebas xUnit. Descarga los paquetes de pruebas en el paso 2, antes de los 90 minutos. No necesitas ASP.NET Core, Azure, una base de datos ni el paquete Squad.Agents.AI: Squad es la herramienta de desarrollo, no una dependencia de la aplicación.
+Utilizaremos una aplicación de consola, `System.Text.Json` y pruebas xUnit. Descarga los paquetes de pruebas en el paso 2, antes de los 105 minutos. No necesitas ASP.NET Core, Azure, una base de datos ni el paquete Squad.Agents.AI: Squad es la herramienta de desarrollo, no una dependencia de la aplicación.
 
 En PowerShell 7 o Bash, comprueba los SDK y el que usaría esa terminal:
 
@@ -771,9 +772,214 @@ If something was not saved, say so instead of reconstructing it as a fact.
 
 Comprueba tú los archivos citados. En la configuración Markdown habitual encontrarás decisiones globales compartidas por todos los miembros (arquetipos) del Squad en `.squad/decisions.md`, aportaciones pendientes en `.squad/decisions/inbox/` e historiales o memoria propia de cada miembro bajo `.squad/agents/`. Puede haber decisiones aún pendientes de consolidar: no afirmes que desaparecieron sin revisar el inbox.
 
+## Ejercicio 6: agentes con distintos modelos en Copilot CLI
+
+Tiempo: minutos 82-97, 15 minutos. Objetivo: configurar dos modelos distintos para dos especialistas y contrastar lo configurado con sus lanzamientos y ejecuciones reales.
+
+Punto de partida: el ejercicio 5 está completado y trabajas en la misma raíz de práctica, con GitHub Copilot CLI y Squad 1.1.0. No cambies al shell interactivo `squad` ni incorpores el SDK a la aplicación: son rutas de ejecución distintas. Si tu cuenta no permite utilizar dos modelos o no expone selección por lanzamiento, trabaja en pareja o revisa la demostración del instructor, registrando esa limitación.
+
+### Paso 1: elegir especialistas y modelos disponibles
+
+En la sesión CLI del ejercicio 5, consulta `/model`. El catálogo de tu cuenta y cliente es la referencia para elegir dos IDs distintos; no asumas que los modelos de una guía están disponibles ni habilites cargos adicionales. Elegir un modelo de sesión no asigna por sí mismo modelos diferentes a los especialistas.
+
+Envía una versión de este encargo. Squad elige los miembros según sus charters y el routing, no por nombres preestablecidos.
+
+Versión en español:
+
+```text
+Propón dos revisiones pequeñas y de solo lectura sobre esta aplicación:
+una de ayuda y mensajes de consola y otra de los casos de prueba para JSON
+corrupto. No ejecutes las revisiones todavía.
+
+Selecciona dos especialistas distintos según sus charters y el routing.
+Indica el rol, el identificador real de su directorio bajo .squad/agents/
+y qué responsabilidad justifica cada elección. No crees nuevos miembros.
+
+Usaremos un modelo distinto para cada especialista en Copilot CLI.
+Muestra el plan y espera mi aprobación y la configuración de los modelos.
+No modifiques archivos, instales paquetes, hagas commit ni push.
+```
+
+Versión en inglés:
+
+```text
+Propose two small read-only reviews of this application:
+one of console help and messages and one of test cases for corrupt JSON.
+Do not run the reviews yet.
+
+Select two distinct specialists according to their charters and routing.
+Report each role, the actual directory ID under .squad/agents/, and the
+responsibility that justifies the selection. Do not create new members.
+
+We will use a different model for each specialist in Copilot CLI.
+Show the plan and wait for my approval and model configuration.
+Do not modify files, install packages, commit or push.
+```
+
+Comprueba los dos IDs en `.squad/agents/` y sus charters. Aprueba el reparto cuando encaje con las responsabilidades y conserva el texto de esa propuesta: lo adjuntarás a la nueva sesión del paso 3. Sal de la conversación CLI para configurar desde la terminal de la práctica. Ejecuta `squad config model` y anota las asignaciones anteriores de esos dos miembros; las necesitarás al terminar.
+
+### Paso 2: guardar una asignación por agente
+
+Las claves de `agentModelOverrides`, dentro de `.squad/config.json`, son los IDs de directorio, no necesariamente los nombres mostrados en el chat. `defaultModel` es la preferencia global para quienes no tengan una asignación individual; no la cambies para esta demostración. Conserva `stateBackend: "local"` y los demás ajustes del proyecto.
+
+En PowerShell 7, introduce los dos IDs reales aprobados y los dos modelos elegidos del catálogo:
+
+```powershell
+$firstAgent = Read-Host 'First agent directory ID'
+$secondAgent = Read-Host 'Second agent directory ID'
+$firstModel = Read-Host 'First available model ID'
+$secondModel = Read-Host 'Second available model ID'
+foreach ($selection in @($firstAgent, $secondAgent, $firstModel, $secondModel)) {
+  if ([string]::IsNullOrWhiteSpace($selection)) { throw 'Agent and model IDs must not be empty.' }
+}
+if ($firstAgent -eq $secondAgent -or $firstModel -eq $secondModel) {
+    throw 'Choose two distinct agents and two distinct models.'
+}
+squad config model "$firstModel" --agent "$firstAgent"
+if ($LASTEXITCODE -ne 0) { throw 'First model assignment failed; inspect configuration before continuing.' }
+squad config model "$secondModel" --agent "$secondAgent"
+if ($LASTEXITCODE -ne 0) { throw 'Second model assignment failed; inspect configuration before continuing.' }
+squad config model
+```
+
+En Bash, utiliza esta alternativa dentro del mismo proyecto:
+
+```bash
+read -r -p 'First agent directory ID: ' first_agent
+read -r -p 'Second agent directory ID: ' second_agent
+read -r -p 'First available model ID: ' first_model
+read -r -p 'Second available model ID: ' second_model
+if [ -z "$first_agent" ] || [ -z "$second_agent" ] || [ -z "$first_model" ] || [ -z "$second_model" ]; then
+  printf '%s\n' 'Agent and model IDs must not be empty.'
+elif [ "$first_agent" = "$second_agent" ] || [ "$first_model" = "$second_model" ]; then
+  printf '%s\n' 'Choose two distinct agents and two distinct models.'
+else
+  squad config model "$first_model" --agent "$first_agent" &&
+    squad config model "$second_model" --agent "$second_agent" &&
+    squad config model
+fi
+```
+
+No avances si algún comando falla. La CLI valida IDs de agentes y su propio catálogo de modelos, pero eso no demuestra que tu cuenta tenga acceso al modelo. Comprueba en `.squad/config.json` que aparecen ambos IDs con valores distintos. Los comandos modifican preferencias persistentes; no ejecutan modelos.
+
+La resolución documentada da prioridad a estas capas, en este orden:
+
+```text
+Override explícito de la tarea
+  > agentModelOverrides[agente] o defaultModel
+  > modelo de sesión
+  > Preferred del charter
+  > selección automática según tarea
+  > modelo predeterminado
+```
+
+Una asignación individual gana frente a `defaultModel`, al modelo de sesión y al charter. `auto` expresa ausencia de preferencia en una capa, no un modelo concreto; no lo uses como uno de los dos modelos de la demostración. El resolver puede recurrir a un fallback si conoce que el modelo no está disponible. Guardar una preferencia no garantiza que la interfaz ni el runtime la apliquen.
+
+### Paso 3: ejecutar las revisiones y observar los lanzamientos
+
+Abre una sesión nueva para que el coordinador vuelva a leer la configuración:
+
+```text
+copilot --agent squad --additional-mcp-config "@.mcp.json"
+```
+
+Adjunta o pega la propuesta aprobada en el paso 1, con los dos IDs reales y las revisiones acordadas, y después usa una de estas versiones. La configuración persiste los modelos, no esa propuesta conversacional. No añadas un override de modelo para la tarea, porque ocultaría las asignaciones que quieres comprobar.
+
+Versión en español:
+
+```text
+Ejecuta las dos revisiones de solo lectura cuyo reparto acabamos de aprobar.
+Recupera los especialistas del plan y sus preferencias agentModelOverrides
+de .squad/config.json. Respeta sus charters y el routing.
+
+En cada lanzamiento solicita el modelo resuelto para ese miembro mediante
+la capacidad real de selección de modelo de la herramienta de lanzamiento.
+No basta escribir el nombre del modelo en el texto del encargo.
+
+Muestra por separado el ID y rol del miembro, el modelo configurado,
+el modelo solicitado en la llamada, el modelo reportado por el runtime
+si está disponible y la referencia de cada evidencia real.
+Si hay un fallback, una restricción o falta información del runtime,
+decláralo: no infieras el modelo usado de la configuración ni del resultado.
+
+No modifiques código, pruebas, datos ni configuración. No instales paquetes,
+hagas commit ni push. Como máximo, dos trabajos independientes a la vez.
+Si no puedes lanzar especialistas con modelos diferentes, informa del
+impedimento y espera; no simules dos agentes en una sola respuesta.
+```
+
+Versión en inglés:
+
+```text
+Run the two read-only reviews whose ownership plan we just approved.
+Recover the specialists from the plan and their agentModelOverrides
+preferences from .squad/config.json. Respect their charters and routing.
+
+For each launch, request the resolved model for that member using the
+launch tool's actual model-selection capability. Writing the model name
+inside the task prompt is not sufficient.
+
+Report separately the member ID and role, configured model, model requested
+in the tool call, runtime-reported model if available, and references to
+each real piece of evidence. Declare fallbacks, restrictions or missing
+runtime information; do not infer the used model from config or output.
+
+Do not modify code, tests, data or configuration. Do not install packages,
+commit or push. Run at most two independent jobs at a time.
+If you cannot launch specialists with different models, report the blocker
+and wait; do not simulate two agents in a single response.
+```
+
+Inspecciona las llamadas de lanzamiento y sus resultados en CLI. Registra el modelo solicitado mediante el argumento real de la herramienta, no mediante la explicación del coordinador. Busca el modelo reportado en los metadatos de ejecución o los registros locales que tu cliente exponga; si no aparece, registra «no expuesto». No publiques registros ni proyectes tokens o contenido privado.
+
+### Paso 4: contrastar las evidencias y restaurar preferencias
+
+Distingue estas tres evidencias para cada uno de los dos especialistas:
+
+| Evidencia | Qué compruebas | Qué no demuestra por sí sola |
+| :--- | :--- | :--- |
+| Configuración guardada | ID y valor en `agentModelOverrides` | Que el agente se lanzó o utilizó ese modelo |
+| Modelo solicitado | Parámetro real de la llamada de lanzamiento | Que el runtime lo aceptó sin fallback |
+| Modelo reportado | Metadatos o registros de la ejecución concreta | Que la revisión sea correcta |
+
+Da por demostrada la ejecución con modelos distintos solo si puedes relacionar las dos ejecuciones reales con dos modelos reportados distintos. Si solo hay modelos solicitados distintos, concluye «configuración y solicitud verificadas; modelos efectivos no confirmados». Si ambos acaban en el mismo fallback, no afirmes que se ejecutaron con modelos diferentes. Tampoco infieras el modelo por el estilo de la respuesta.
+
+Contrasta con VS Code: según la documentación de Squad 1.1.0, allí los agentes usan el modelo de sesión del selector, no una selección diferente por lanzamiento. No presentes guardar este JSON como prueba de ejecución multimodelo en el editor. En cualquier cliente, comprueba las capacidades reales de la versión que estás utilizando.
+
+Para terminar, restaura las preferencias anteriores de los dos miembros. Introduce para cada uno el modelo previo que anotaste en el paso 1; deja la entrada vacía únicamente si no tenía una asignación individual. Ejecuta la alternativa de tu shell:
+
+```powershell
+foreach ($agent in @($firstAgent, $secondAgent)) {
+    $previousModel = Read-Host "Previous model ID for $agent (empty only if none)"
+    if ([string]::IsNullOrWhiteSpace($previousModel)) {
+        squad config model --clear --agent "$agent"
+    } else {
+        squad config model "$previousModel" --agent "$agent"
+    }
+    if ($LASTEXITCODE -ne 0) { throw 'Model preference restoration failed; inspect configuration.' }
+}
+squad config model
+```
+
+```bash
+for agent in "$first_agent" "$second_agent"; do
+  read -r -p "Previous model ID for $agent (empty only if none): " previous_model
+  if [ -z "$previous_model" ]; then
+    squad config model --clear --agent "$agent" || break
+  else
+    squad config model "$previous_model" --agent "$agent" || break
+  fi
+done
+squad config model
+```
+
+No avances si la restauración falla. Comprueba que los dos miembros recuperaron sus valores anteriores y que `defaultModel` y los otros ajustes no cambiaron. No reemplaces todo `.squad/config.json` ni elimines preferencias ajenas. Verifica las revisiones contra los archivos citados: usar dos modelos no demuestra calidad, consenso ni independencia de sus errores.
+
+Referencias: [selección por agente y limitación de VS Code en Squad 1.1.0](https://github.com/bradygaster/squad/blob/v1.1.0/docs/src/content/docs/features/model-selection.md) y [comandos de configuración de modelos](https://github.com/bradygaster/squad/blob/v1.1.0/packages/squad-cli/src/cli/commands/config.ts).
+
 ## Cierre y evidencias
 
-Tiempo: minutos 82-90, 8 minutos.
+Tiempo: minutos 97-105, 8 minutos.
 
 Revisa los cambios locales antes de decidir qué conservar.
 
@@ -792,5 +998,6 @@ Usa esta lista para ambos lenguajes; registra la versión de Python o del SDK .N
 - [ ] Hay pruebas reales, no cero casos ni solo la prueba vacía de xUnit
 - [ ] Registro la versión del lenguaje o SDK, el número de pruebas y el resultado real
 - [ ] Puedo localizar a quién delegó Squad, qué aportó cada especialista y cómo su charter justificó la elección
+- [ ] Distingo modelo configurado, solicitado y reportado; registro lo comprobado en el ejercicio 6 y restauro las preferencias anteriores
 
 Responde: ¿qué tarea pequeña resolverías con un único asistente?, ¿qué trabajo separarías entre especialistas?, ¿qué permiso no concederías automáticamente? Contrasta tu salida con la [lista del temario](00%20-%20temario.md).

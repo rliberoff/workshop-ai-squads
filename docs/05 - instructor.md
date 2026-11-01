@@ -8,7 +8,7 @@ El participante formula objetivos y límites; Squad selecciona especialistas y r
 
 Conserva cuatro arquetipos base y añade los cinco extras del [temario](00%20-%20temario.md). Explica que esta composición es una decisión del taller; Squad adapta el equipo al proyecto y no siempre crea cuatro roles idénticos. No cuentes el coordinador, Scribe ni Ralph como extras.
 
-La duración aproximada es de 90 minutos con instalaciones previas. Tener nueve especialistas no implica ejecutar nueve sesiones simultáneas. El límite de dos trabajos independientes reduce consumo y colisiones, y permite mostrar dependencias sin saturar.
+La duración aproximada es de 105 minutos con instalaciones previas. Tener nueve especialistas no implica ejecutar nueve sesiones simultáneas. El límite de dos trabajos independientes reduce consumo y colisiones, y permite mostrar dependencias sin saturar.
 
 Conduce la sesión desde los [ejercicios](04%20-%20ejercicios.md), que integran las alternativas de Python y .NET dentro de cada paso, permitiendo que cada asistente elija su lenguaje. El inicio de sesión y la sección «Antes de la sesión: preparar el proyecto» se completan antes de venir, sin encargos a los agentes. Durante la clase, cada mesa elige el bloque técnico de su proyecto en el mismo documento; las acciones comunes de Squad no se repiten por lenguaje.
 
@@ -27,7 +27,7 @@ Con cierta antelación:
 - Comprueba manualmente ambos entornos de shell si están disponibles; registra los que no hayas probado
 - No actualices Squad, Copilot, SDK ni modelos justo antes de impartirlo sin repetir el ensayo
 
-En el ensayo, completa los [cinco ejercicios](04%20-%20ejercicios.md) y conserva repositorios de demostración locales con estas etapas reales:
+En el ensayo, completa los [seis ejercicios](04%20-%20ejercicios.md) y conserva repositorios de demostración locales con estas etapas reales:
 
 | Etapa | Contenido que debe poder mostrarse |
 | :--- | :--- |
@@ -37,6 +37,7 @@ En el ensayo, completa los [cinco ejercicios](04%20-%20ejercicios.md) y conserva
 | Implementación | Aplicación y pruebas ejecutadas con resultados guardados |
 | Revisión | Hallazgos o revisión sin hallazgos, reparaciones y prueba repetida |
 | Memoria | Nueva sesión que recupera una decisión desde archivos |
+| Modelos | Dos especialistas en CLI, modelos configurados y solicitados, reporte del runtime si existe y preferencias restauradas |
 
 Estos repositorios los produce el ensayo del instructor: el material no incluye una solución preconstruida ni resultados ficticios. Guarda copias separadas o commits locales de tus repositorios de ensayo para mostrar una etapa sin borrar trabajo durante la clase. No publiques historiales con datos privados.
 
@@ -44,7 +45,7 @@ Si el ensayo supera el tiempo, reduce explicaciones o usa una etapa ya preparada
 
 ## Revisión técnica antes de abrir la sala
 
-En el ensayo, respeta el mismo orden del participante: preparación común, sección de preparación del proyecto en la guía integrada y ejercicios 1 a 5, sin añadir una tarea preliminar. Comprueba tú la delegación al ensayar los ejercicios; no conviertas esa verificación del instructor en un requisito previo para estudiantes. Ejecuta los comandos del ejercicio 3 solo en la etapa de implementación, no en un entorno vacío o de plantillas. Conserva las versiones observadas. Para la herramienta común, comprueba:
+En el ensayo, respeta el mismo orden del participante: preparación común, sección de preparación del proyecto en la guía integrada y ejercicios 1 a 6, sin añadir una tarea preliminar. Comprueba tú la delegación al ensayar los ejercicios; no conviertas esa verificación del instructor en un requisito previo para estudiantes. Ejecuta los comandos del ejercicio 3 solo en la etapa de implementación, no en un entorno vacío o de plantillas. Conserva las versiones observadas. Para la herramienta común, comprueba:
 
 ```text
 squad --version
@@ -63,7 +64,7 @@ Valida estas equivalencias entre lenguajes: comandos, códigos de salida, orden 
 
 No anuncies compatibilidad probada con macOS o WSL basándote únicamente en haber leído sintaxis Bash. Diferencia siempre documentación contrastada, revisión estática y ejecución real.
 
-## Guion de los 90 minutos
+## Guion de los 105 minutos
 
 ### Minutos 00-08: poner el marco
 
@@ -129,7 +130,15 @@ Guía el ejercicio 5. Cierra la actividad de escritura del editor antes de inici
 
 Si falta algo, revisa el inbox y el estado del escriba. Enseña cómo detectar una decisión no consolidada o equivocada. Nunca presentes una reconstrucción plausible del modelo como memoria verificada.
 
-### Minutos 82-90: cerrar con criterio
+### Minutos 82-97: modelos por agente y evidencia
+
+Guía el [ejercicio 6](04%20-%20ejercicios.md#ejercicio-6-agentes-con-distintos-modelos-en-copilot-cli) desde GitHub Copilot CLI, no desde el shell interactivo `squad`. Squad elige dos revisores según sus charters; la persona comprueba los IDs y asigna dos modelos disponibles en su cuenta. Conserva la propuesta aprobada para adjuntarla tras reiniciar la sesión y evita que un override de tarea oculte las preferencias persistentes.
+
+Ensaya la configuración, las llamadas de lanzamiento y los metadatos que tu versión de CLI exponga. Proyecta por separado el modelo guardado en JSON, el solicitado por la herramienta y el reportado por el runtime; una respuesta del coordinador o un nombre de modelo dentro del prompt no acredita el modelo efectivo. Si los metadatos no están disponibles, registra «no expuesto»; si ambos modelos caen en el mismo fallback, no declares ejecución con modelos distintos.
+
+Explica la limitación documentada de Squad 1.1.0 en VS Code: modelo de sesión compartido, no selección distinta por lanzamiento. No garantices esa distinción en todas las versiones futuras. Si falta acceso a dos modelos o selección por lanzamiento, utiliza pareja o evidencias reales del ensayo; no exijas compras ni habilites cargos. Revisa los dos informes y restaura únicamente las preferencias modificadas.
+
+### Minutos 97-105: cerrar con criterio
 
 Pide las evidencias del ejercicio y aplica la rúbrica. Recuerda que los archivos nuevos no aparecen completos en `git diff`.
 
@@ -141,11 +150,13 @@ Cierra con tres preguntas: «¿Qué no delegarías?», «¿Qué revisarías en u
 | :--- | :--- |
 | Sin acceso o sin cuota | Pareja con cuenta habilitada; después demostración y revisión de archivos |
 | Caída de Internet | Utiliza etapas locales ya preparadas; marca la delegación como observada previamente |
-| Instalación rota | No consumir los 90 minutos reparando; usar pareja y continuar la revisión |
+| Instalación rota | No consumir los 105 minutos reparando; usar pareja y continuar la revisión |
 | Nombres o estructura diferentes | Mostrar el mapeo real; conservar los nueve roles |
 | Agente amplía alcance | Pausar, mostrar el contrato y volver a una tarea acotada |
 | Dos agentes pisan un archivo | Detener escrituras, inspeccionar el diff y pedir a Squad que elija un único propietario según los charters |
 | Memoria contiene un error | Aprobar una corrección explícita y comprobar su recuperación posterior |
+| Solo un modelo disponible o sin selección por lanzamiento | Pareja o demostración ensayada; no simular dos modelos ni certificar ejecuciones no realizadas |
+| El runtime no expone el modelo usado | Separar configuración y solicitud de modelo efectivo no confirmado |
 | .NET restaura paquetes en directo | Usar la etapa local preparada y corregir la preparación para la próxima edición |
 | Falta tiempo para programar | Pasar a implementación ensayada sin omitir revisión ni recuperación de memoria |
 
@@ -160,10 +171,11 @@ No existe sustitución offline para ejecutar los modelos de Copilot en esta prá
 | Funcionalidad | Añadir, listar, completar y volver a abrir |
 | Calidad | Suite real con casos de aceptación y al menos un caso negativo mostrado |
 | Memoria | Una decisión recuperada en otra sesión con referencia a su archivo |
+| Modelos | Configuración y solicitud identificadas; modelos reportados contrastados o falta de evidencia declarada; preferencias restauradas |
 | Criterio humano | Un límite de permisos y una decisión que no se delega |
 
 Anota por dimensión si la persona ejecutó, trabajó en pareja u observó evidencia. No penalices una restricción de licencia como si fuera falta de comprensión; tampoco certifiques ejecución individual cuando no ocurrió.
 
 ## Después del taller
 
-Solicita feedback sin recoger tokens ni información privada. Revisa las versiones y los enlaces antes de repetir la sesión. Propón como continuación opcional un filtro de pendientes, pero deja claro que no pertenece a los 90 minutos ni al contrato evaluado.
+Solicita feedback sin recoger tokens ni información privada. Revisa las versiones y los enlaces antes de repetir la sesión. Propón como continuación opcional un filtro de pendientes, pero deja claro que no pertenece a los 105 minutos ni al contrato evaluado.

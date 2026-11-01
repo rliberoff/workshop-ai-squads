@@ -2,7 +2,7 @@
 
 ## Antes de venir
 
-Reserva entre 30 y 45 minutos fuera de los 90 minutos del taller; las instalaciones o la activación de tu cuenta pueden requerir más tiempo. Necesitas conexión a Internet para instalar herramientas y usar Copilot, aunque la aplicación y sus datos funcionen localmente.
+Reserva entre 30 y 45 minutos fuera de los 105 minutos del taller; las instalaciones o la activación de tu cuenta pueden requerir más tiempo. Necesitas conexión a Internet para instalar herramientas y usar Copilot, aunque la aplicación y sus datos funcionen localmente.
 
 Sigue este orden. Todo lo que aparece en esta página se hace antes de la sesión:
 
